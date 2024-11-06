@@ -1,0 +1,33 @@
+<ion-header>
+  <ion-navbar>
+  	<ion-buttons left>
+  		<button ion-button menuToggle>
+  			<ion-icon name="menu"></ion-icon>
+  		</button>
+  	</ion-buttons>
+    <ion-title>Registration</ion-title>
+  </ion-navbar>
+</ion-header>
+
+<ion-content id="authpages" padding>
+	<div class="formloginin">
+	  	<img alt="logo" class="formlogo" src="../../assets/imgs/logo1.png">
+	 	<form #f="ngForm" (ngSubmit)="onRegister(f)"> 
+		<ion-list>
+			<ion-item id="inputbox">
+				<ion-input type="text" name="name" placeholder="Name: Input must be not less than 100 characters and alphabetic.)" pattern="[a-zA-Z ]*" [maxlength]="100" required ngModel></ion-input>
+			</ion-item>
+			<ion-item id="inputbox">
+				<ion-input type="number" name="phone" placeholder="Phone: Input must be 7 characters and numeric." pattern="^[0-9]+$" [maxlength]="7" required ngModel></ion-input>
+			</ion-item>
+			<ion-item id="inputbox">
+				<ion-input type="email" name="email" placeholder="Email: Must be personal email address." [email]="true" [maxlength]="100" required ngModel></ion-input>
+			</ion-item>
+			<ion-item id="inputbox">
+				<ion-input type="password" name="password" placeholder="Password: Input must be less than 8 & alphanumeric characters." [minlength]="8" [maxlength]="15" pattern="^(?=.*[a-z])(?=.*[A-Z])(?=.*[0-9])[a-zA-Z0-9]+$" required ngModel ></ion-input>
+			</ion-item>
+		</ion-list>
+		<button ion-button type="submit" class="formbutton" block [disabled]="!f.valid">Register</button>
+	</form>
+	</div>
+</ion-content>

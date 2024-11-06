@@ -1,0 +1,134 @@
+<ion-header>
+  <ion-navbar>
+  	 <ion-buttons left>
+  		<button ion-button menuToggle>
+  			<ion-icon name="menu"></ion-icon>
+  		</button>
+  	</ion-buttons>
+  	<ion-buttons right>
+      <button ion-button icon-only *ngFor="let profile of profilelist | async;" (click)="editProfile(profile, profile.key)">
+        <ion-icon name="create"></ion-icon>
+      </button>
+    </ion-buttons>
+    <ion-title>My Profile</ion-title>
+  </ion-navbar>
+</ion-header>
+
+<ion-content text-wrap>
+<ion-list *ngFor="let profile of profilelist | async; let i = index">
+    <ion-item id="profilearea" class="fltleft">
+        <div class="imageprofile" [ngStyle]="{'background-image':'url(' + profile.photo_urls + ')'}"></div>
+        <p class="pname">{{ profile.name }}</p><br>
+        <p><ion-icon name="call" id="proicon"></ion-icon> +673 {{ profile.phone }}</p>
+        <p><ion-icon name="mail" id="proicon"></ion-icon> {{ profile.email }}</p>
+        <p><ion-icon name="home" id="proicon"></ion-icon> {{ profile.address }}</p>
+    </ion-item>
+    <div>
+      <ion-segment [(ngModel)]="opt" color="light">
+        <ion-segment-button value="bruhims" id="profileopt">
+          MY BRU-HIMS DETAILS
+        </ion-segment-button>
+        <ion-segment-button value="emergencycontact" id="profileopt">
+          EMERGENCY CONTACT
+        </ion-segment-button>
+      </ion-segment>
+  </div>
+  <div class="emergencycontent" [ngSwitch]="opt">
+    <ion-list *ngSwitchCase="'bruhims'">
+      <ion-item id="bruhimsarea">
+      <p class="pbruhims">MY BRU-HIMS DETAILS</p><hr>
+      <ion-row >
+        <ion-col>
+          <b class="pbruhimsinfo"><ion-icon name="md-list-box" id="blackicons"></ion-icon> BRUHIMS CARD NO</b>
+          <p class="pbruhimsinfo">{{ profile.bruhims_no }}</p>
+        </ion-col>
+        <ion-col>
+          <b class="pbruhimsinfo"><ion-icon name="water" id="blackicons"></ion-icon> BLOOD GROUP</b>
+          <p class="pbruhimsinfo">{{ profile.bloodgroup }}</p>
+        </ion-col>
+       
+      </ion-row>
+
+      <ion-row >
+         <ion-col>
+           <b class="pbruhimsinfo"><ion-icon name="male" id="blackicons"></ion-icon> GENDER</b>
+          <p class="pbruhimsinfo">{{ profile.gender }}</p>
+        </ion-col>
+        <ion-col>
+          <b class="pbruhimsinfo"><ion-icon name="people" id="blackicons"></ion-icon> MARTIAL STATUS</b>
+          <p class="pbruhimsinfo">{{ profile.marriage_status }}</p>
+        </ion-col>
+      </ion-row>
+
+      <ion-row >
+        <ion-col>
+          <b class="pbruhimsinfo"><ion-icon name="flag" id="blackicons"></ion-icon> NATIONALITY</b>
+          <p class="pbruhimsinfo">{{ profile.nationality }}</p>
+        </ion-col>
+        <ion-col>
+          <b class="pbruhimsinfo"><ion-icon name="analytics" id="blackicons"></ion-icon> RACE</b>
+          <p class="pbruhimsinfo">{{ profile.race }}</p>
+        </ion-col>
+      </ion-row>
+
+      <ion-row >
+        <ion-col>
+          <b class="pbruhimsinfo"><ion-icon name="card" id="blackicons"></ion-icon> IC NUMBER</b>
+          <p class="pbruhimsinfo">{{ profile.icnumber }}</p>
+        </ion-col>
+        <ion-col>
+          <b class="pbruhimsinfo"><ion-icon name="calendar" id="blackicons"></ion-icon> DATE OF BIRTH</b>
+          <p class="pbruhimsinfo">{{ profile.dateofbirth }}</p>
+        </ion-col>
+      </ion-row>
+
+      <ion-row >
+        <ion-col>
+           <b class="pbruhimsinfo"><ion-icon name="briefcase" id="blackicons"></ion-icon> OCCUPATION</b>
+          <p class="pbruhimsinfo">{{ profile.occupation }}</p>
+        </ion-col>
+      </ion-row>
+    </ion-item> 
+    </ion-list>
+
+    <ion-list id="contactbox" *ngSwitchCase="'emergencycontact'" >
+      <ion-item-sliding id="contactareaout" *ngFor="let emergency of emercontactlist | async; let i = index">
+        <ion-item >
+        <ion-label>
+          <h3><b>{{i+1}}. {{ emergency.contactName }}</b></h3>
+        </ion-label>
+        <ion-icon  item-right id="profileicon3" name="md-arrow-dropleft"></ion-icon>
+      </ion-item>
+      <ion-item-options>
+         <button ion-button  id="buttonlist"(click)="onDeleteEmergency(emergency.key)">
+          <ion-icon name="trash"></ion-icon>
+        </button>
+      </ion-item-options>
+      </ion-item-sliding>
+    </ion-list>
+  
+
+  <ion-list id="contactbox" *ngSwitchCase="'emergencycontact'" >
+    <ion-item-sliding id="contactlist" *ngFor="let contact of contactlist | async; let i = index">
+      <ion-item no-lines id="contactitem">
+        <ion-icon item-left id="profileicon3" name="person"></ion-icon>
+         <ion-label>
+          <h2 class="contactheader">{{ contact.contactName }}</h2>
+          <p>{{ contact.contactNumber }}</p>
+        </ion-label>
+        <ion-icon item-right id="profileicon3" name="md-arrow-dropleft"></ion-icon>
+      </ion-item>
+
+    <ion-item-options id="contactitem">
+      <button ion-button color="remove" id="buttonlist" (click)="onDeleteEmergency(contact.key)">
+        <ion-icon name="trash"></ion-icon>
+      </button>
+    </ion-item-options>
+
+    </ion-item-sliding>
+  </ion-list>
+  </div>    
+</ion-list>
+
+
+</ion-content>

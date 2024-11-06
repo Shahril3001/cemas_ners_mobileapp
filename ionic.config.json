@@ -1,0 +1,7 @@
+{
+  "name": "cemas",
+  "integrations": {
+    "cordova": {}
+  },
+  "type": "ionic-angular"
+}

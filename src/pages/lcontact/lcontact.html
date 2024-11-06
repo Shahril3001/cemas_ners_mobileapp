@@ -1,0 +1,28 @@
+<ion-header>
+  <ion-navbar>
+      <ion-buttons right>
+       <button ion-button icon-only (click)="addnewContact()">
+        <ion-icon name="md-add-circle"></ion-icon>
+      </button>
+    </ion-buttons>
+    <ion-title>Import Contact</ion-title>
+  </ion-navbar>
+</ion-header>
+
+<ion-content id="paddingpage">
+  <ion-fab bottom left>
+  <button ion-fab color="accept" id="btnmode" (click)='getCheckedBoxes()'><ion-icon name="checkmark"></ion-icon></button>
+  </ion-fab>
+
+  <ion-list id="contactlist">
+      <ion-item no-lines id="contactitem" *ngFor="let contact of localcontact | async; let i = index" text-wrap>
+        <ion-checkbox item-start (ionChange)="addCheckbox($event,contact)" *ngIf="!isImportContact(contact)"></ion-checkbox>
+        <ion-checkbox item-start *ngIf="isImportContact(contact)" checked [disabled]="isImportContact(contact)"></ion-checkbox>
+        <ion-label>
+          <h2 class="contactheader">{{ contact.displayName || 'No name'}}</h2>
+          <p id="unimport" class="labelimport" *ngIf="!isImportContact(contact)">[Not Imported Yet]</p>
+          <p id="import" class="labelimport" *ngIf="isImportContact(contact)">[Imported]</p>
+        </ion-label>
+      </ion-item>
+  </ion-list>
+</ion-content>

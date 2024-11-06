@@ -1,0 +1,30 @@
+<ion-header>
+  <ion-navbar>
+  	<ion-buttons left>
+  		<button ion-button menuToggle>
+  			<ion-icon name="menu"></ion-icon>
+  		</button>
+  	</ion-buttons>
+    <ion-buttons right>
+      <button ion-button icon-only *ngIf="isPLAY" (click)="play()">
+        <ion-icon name="megaphone"></ion-icon>
+      </button>
+      <button ion-button icon-only *ngIf="!isPLAY" (click)="stop()">
+        <ion-icon name="pause"></ion-icon>
+      </button>
+    </ion-buttons>
+    <ion-title>History</ion-title>
+  </ion-navbar>
+</ion-header>
+
+<ion-content id="paddingpage">
+  <ion-list id="alertearea">
+    <ion-item no-lines id="alertlist" *ngFor="let emergency of emergencylist | async; let i = index" (click)="viewAlert(emergency)" text-wrap>
+        <img class="logonav" item-start alt="logo" draggable="false" height="70px" src="../../assets/imgs/logo.png">
+        <ion-label>
+          <h2 class="alertheader">I have called <u>{{ emergency.hotlinetype }}</u> hotline</h2>
+          <ion-icon name="time" class="alerticon"></ion-icon>{{ emergency.emergencydate }}<br>
+        </ion-label>
+    </ion-item>
+  </ion-list>
+</ion-content>

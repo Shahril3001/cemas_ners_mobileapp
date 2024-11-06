@@ -1,0 +1,25 @@
+<ion-header>
+  <ion-navbar>
+    <ion-title>Add Emergency contact</ion-title>
+  </ion-navbar>
+</ion-header>
+
+<ion-content padding>
+<ion-card id="formhome">
+  	<ion-card-content id="formin" >
+ 	 <form #f="ngForm" (ngSubmit)="onSubmit(f)">
+		<ion-list>
+			<ion-item>
+				<ion-label floating>Contact Name</ion-label>
+				<ion-input type="text" name="contactname" pattern="[a-zA-Z ]*" [maxlength]="35" ngModel required></ion-input>
+			</ion-item>
+			<ion-item>
+				<ion-label floating>Contact Number</ion-label>
+				<ion-input type="number" name="contactnumber" pattern="^[0-9]+$" [maxlength]="7" ngModel required></ion-input>
+			</ion-item>
+		</ion-list>
+		<button ion-button block type="submit" color="secondary" [disabled]="!f.valid">ADD</button>
+	</form>
+	</ion-card-content>
+  </ion-card>
+</ion-content>

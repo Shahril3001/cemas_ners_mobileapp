@@ -1,0 +1,30 @@
+<ion-header>
+  <ion-navbar>
+    <ion-title>View History</ion-title>
+  </ion-navbar>
+</ion-header>
+
+<ion-content id="ioncontent">
+<ion-card id="formout" text-wrap>
+	<ion-card-content id="formin">
+	<ion-grid>
+		<ion-row>
+			<ion-col>
+				<div id="mapborder">
+				<agm-map [latitude]="emergency.emergencylocation.lat" [longitude] ="emergency.emergencylocation.lng" [zoom]="16">
+					<agm-marker [latitude]="emergency.emergencylocation.lat" [longitude]="emergency.emergencylocation.lng"></agm-marker>
+				</agm-map>
+				</div>
+			</ion-col>
+		</ion-row>
+		<ion-row>
+			<ion-col id="placecol">
+				<h2 class="alertheader1">I have call {{ emergency.hotlinetype }} hotline</h2>
+				<ion-icon name="time" class="alerticon1"></ion-icon> {{ emergency.emergencydate }}<br>
+				<p id="viewaddress1"><b>Address:</b> {{geoAddress }}</p>
+			</ion-col>
+		</ion-row>
+	</ion-grid>
+	</ion-card-content>	
+ 	</ion-card>
+</ion-content>

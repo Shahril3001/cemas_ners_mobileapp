@@ -1,0 +1,47 @@
+<ion-header>
+  <ion-navbar>
+  	<ion-buttons left>
+  		<button ion-button menuToggle>
+  			<ion-icon name="menu"></ion-icon>
+  		</button>
+  	</ion-buttons>
+    <ion-title>Settings</ion-title>
+  </ion-navbar>
+</ion-header>
+
+<ion-content id="paddingpage">
+
+<ion-item class="itemsettings" no-lines text-wrap *ngFor="let night of nightmodelist; let i = index">
+<ion-icon class="settingsicon" id="blackicon" name="md-moon" item-left></ion-icon>
+<ion-label>
+  <h2 class="settingsheader">NIGHT MODE</h2>
+  <p>Take care of your eyes, use dark theme for night and daily.</p>
+</ion-label>
+<ion-toggle [(checked)]="night.nightstatus" [(ngModel)]="night.nightstatus" (ionChange)="toggleAppTheme()"></ion-toggle>
+</ion-item>
+
+<ion-item class="itemsettings" no-lines text-wrap *ngFor="let blind of blindmodelist; let i = index">
+<ion-icon class="settingsicon" id="blackicon" name="color-palette" item-left></ion-icon>
+<ion-label>
+  <h2 class="settingsheader">COLOR BLIND MODE</h2>
+  <p>Help color blind eye person to view page.</p>
+</ion-label>
+<ion-toggle [(checked)]="blind.colorblindstatus" [(ngModel)]="blind.colorblindstatus"  (ionChange)="toggleBlind()"></ion-toggle>
+</ion-item>
+
+<ion-item class="itemsettings" no-lines text-wrap *ngFor="let awake of screenAwakelist; let i = index">
+  <ion-icon class="settingsicon" id="blackicon" name="md-bulb" item-left></ion-icon>
+<ion-label>
+  <h2 class="settingsheader">SCREEN AWAKE</h2>
+  <p>Keep your mobile's screen from turning off without changing the power settings.</p>
+</ion-label>
+<ion-toggle [(checked)]="awake.awakestatus" [(ngModel)]="awake.awakestatus" (ionChange)="toggleAwake()"></ion-toggle>
+</ion-item>
+
+<ion-item class="itemsettings" no-lines text-wrap>
+  <ion-range min="0" max="100" step="1" [(ngModel)]="brightnessModel" (ionChange)="adjustBrightness()" debounce="500">
+      <ion-icon id="blackicon" slot="start" small range-left name="sunny"></ion-icon>
+      <ion-icon id="blackicon" slot="end" range-right name="sunny"></ion-icon>
+  </ion-range>
+</ion-item>
+</ion-content>

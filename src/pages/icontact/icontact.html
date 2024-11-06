@@ -1,0 +1,62 @@
+<ion-header>
+  <ion-navbar>
+  	 <ion-buttons left>
+  		<button ion-button menuToggle>
+  			<ion-icon name="menu"></ion-icon>
+  		</button>
+  	</ion-buttons>
+    <ion-buttons right>
+      <button ion-button icon-only *ngIf="isPLAY" (click)="play()">
+        <ion-icon name="megaphone"></ion-icon>
+      </button>
+      <button ion-button icon-only *ngIf="!isPLAY" (click)="stop()">
+        <ion-icon name="pause"></ion-icon>
+      </button>
+    </ion-buttons>
+    <ion-title>Emergency Contact</ion-title>
+  </ion-navbar>
+</ion-header>
+
+<ion-content id="paddingpage">
+  <ion-list>
+  <ion-searchbar [(ngModel)]="searchTerm"></ion-searchbar>
+  </ion-list>
+  
+  <ion-fab bottom left>
+    <button ion-fab><ion-icon name="ios-arrow-dropup-outline"></ion-icon></button>
+    <ion-fab-list side="top">
+      <button ion-fab id="btnmode" class="sort" color="filter" (click)="sort()"><ion-icon name="funnel"></ion-icon></button>
+      <button ion-fab id="btnmode" color="addcontact" (click)="importContact()"><ion-icon name="md-person-add"></ion-icon></button>
+    </ion-fab-list>
+  </ion-fab>
+
+  <ion-list>
+    <ion-item-sliding id="contactlist" *ngFor="let contact of importcontact | search : searchTerm | sort: {displayName: displayName, order: order}; let i = index">
+      <ion-item no-lines id="contactitem" text-wrap>
+        <ion-icon item-left id="iconfavourite" *ngIf="isPincontact(contact)" name="ios-heart"></ion-icon>
+        <ion-icon item-left id="profileicon3" *ngIf="!isPincontact(contact)" name="person"></ion-icon>
+         <ion-label>
+          <h2 class="contactheader">{{ contact.displayName}}</h2>
+          <p>{{ contact.phoneNumbers[0].value}}</p>
+        </ion-label>
+        <ion-icon item-right id="profileicon3" name="md-arrow-dropleft"></ion-icon>
+      </ion-item>
+
+    <ion-item-options id="contactitem">
+      <button ion-button color="call" id="buttonlist" (click)="callContact(contact.phoneNumbers[0].value)">
+        <ion-icon name="md-call"></ion-icon>
+      </button>
+      <button ion-button color="sms" id="buttonlist" (click)="smsContact(contact.phoneNumbers[0].value)">
+        <ion-icon name="md-mail"></ion-icon>
+      </button>
+      <button ion-button color="favourite" id="buttonlist" *ngIf="!isPincontact(contact)" (click)="onPin(contact)">
+        <ion-icon name="ios-heart"></ion-icon>
+      </button>
+      <button ion-button color="remove" id="buttonlist" (click)="onUnimport(i)">
+        <ion-icon name="trash"></ion-icon>
+      </button>
+    </ion-item-options>
+
+    </ion-item-sliding>
+  </ion-list>
+</ion-content>

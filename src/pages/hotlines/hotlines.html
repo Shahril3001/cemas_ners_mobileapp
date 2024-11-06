@@ -1,0 +1,70 @@
+<ion-header [color]="selectedTheme + '-primary'">
+  <ion-navbar>
+    <ion-buttons left>
+      <button ion-button menuToggle>
+        <ion-icon name="menu"></ion-icon>
+      </button>
+    </ion-buttons>
+    <ion-buttons right>
+      <button ion-button icon-only *ngIf="isPLAY" (click)="play()">
+        <ion-icon name="megaphone"></ion-icon>
+      </button>
+      <button ion-button icon-only *ngIf="!isPLAY" (click)="stop()">
+        <ion-icon name="pause"></ion-icon>
+      </button>
+    </ion-buttons>
+    <ion-title>Emergency</ion-title>
+  </ion-navbar>
+</ion-header>
+
+<ion-content id="paddingpage">
+  <div>
+    <ion-segment [(ngModel)]="opt" color="light">
+      <ion-segment-button value="emergency" id="emergencyopt">
+        Hotline
+      </ion-segment-button>
+      <ion-segment-button value="favourite" id="emergencyopt">
+        Favourite
+      </ion-segment-button>
+    </ion-segment>
+  </div>
+  <div class="emergencycontent" [ngSwitch]="opt">
+    <ion-list id="hotlinearea" *ngSwitchCase="'emergency'">
+      <button id="holinelist" *ngFor="let hotline of hotlineslist | async; let i = index" [ngStyle]="{'background-color': hotline.colour}" (click)="callContact(hotline,hotline.number)" text-wrap>
+        <div id="imagearea" >
+         <img alt="logo" draggable="false" height="66px" src="{{ hotline.imageurl }}">
+        </div>
+        <div id="labelarea">
+          <strong>{{ hotline.name | uppercase}}</strong>
+        </div>
+      </button>
+
+    </ion-list>
+
+    <ion-list id="hotlinearea" *ngSwitchCase="'favourite'">
+      <ion-item-sliding id="contactlist" *ngFor="let contact of pincontact; let i = index" >
+      <ion-item no-lines id="contactitem" text-wrap>
+        <ion-icon item-left id="iconfavourite" name="ios-heart"></ion-icon>
+         <ion-label>
+          <h2 class="contactheader">{{ contact.displayName}}</h2>
+          <p>{{ contact.phoneNumbers[0].value}}</p>
+        </ion-label>
+        <ion-icon item-right id="profileicon3" name="md-arrow-dropleft"></ion-icon>
+      </ion-item>
+
+    <ion-item-options id="contactitem">
+      <button ion-button color="call" id="buttonlist" (click)="callContact1(contact.phoneNumbers[0].value)">
+        <ion-icon name="md-call"></ion-icon>
+      </button>
+      <button ion-button color="sms" id="buttonlist" (click)="smsContact(contact.phoneNumbers[0].value)">
+        <ion-icon name="md-mail"></ion-icon>
+      </button>
+      <button ion-button color="remove" id="buttonlist" (click)="onUnpin(i)">
+        <ion-icon name="trash"></ion-icon>
+      </button>
+    </ion-item-options>
+
+    </ion-item-sliding>
+    </ion-list>
+  </div>
+</ion-content>

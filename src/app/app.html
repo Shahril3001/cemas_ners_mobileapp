@@ -1,0 +1,63 @@
+<ion-menu [content]="nav">
+	<ion-header [class]="selectedTheme">
+		<ion-toolbar id="toolbar">
+    		<ion-title>
+    			<ion-row>
+    				<ion-col><img class="logonav" alt="logo" draggable="false" height="61px" src="../../assets/imgs/logo.png">
+    				</ion-col>
+    				<ion-col>
+    					<h2 id="navtitle">Cemas</h2>
+    					<p id="navp">Intelligence Emergency<br> Response</p><hr>
+    				</ion-col>
+    			</ion-row>
+    		</ion-title>
+		</ion-toolbar>
+	</ion-header>
+	<ion-content>
+		<ion-list>
+			<button ion-item (click)="onLoad(root1Page)" *ngIf="!isAuthenticated">
+				<ion-icon name="home" item-left></ion-icon>
+				Home
+			</button>
+			<button ion-item (click)="onLoad(rootPage)" *ngIf="isAuthenticated">
+				<ion-icon name="home" item-left></ion-icon>
+				Home
+			</button>
+			<button ion-item (click)="onLoad(myprofilePage)" *ngIf="isAuthenticated">
+				<ion-icon name="md-contact" item-left></ion-icon>
+				My Profile
+			</button>
+			<button ion-item (click)="onLoad(loginPage)" *ngIf="!isAuthenticated">
+				<ion-icon name="log-in" item-left></ion-icon>
+				Login
+			</button>
+			<button ion-item (click)="onLoad(qrcodePage)"  *ngIf="isAuthenticated">
+				<ion-icon name="barcode" item-left></ion-icon>
+				Generate Q.R. Code
+			</button>
+				<button ion-item (click)="scanCode()">
+				<ion-icon name="md-qr-scanner" item-left></ion-icon>
+				Scan Q.R. Code
+			</button>
+			<button ion-item (click)="onLoad(settingsPage)">
+				<ion-icon name="md-settings" item-left></ion-icon>
+				Settings
+			</button>
+			<button ion-item (click)="onLogout()" *ngIf="isAuthenticated">
+				<ion-icon name="md-log-out" item-left></ion-icon>
+				Logout
+			</button>
+			<button ion-item (click)="onExit()">
+				<ion-icon name="md-exit" item-left></ion-icon>
+				Close App
+			</button>
+		</ion-list>
+
+	</ion-content>
+	<ion-footer id="footertitle">CEMAS FYP_GROUP2@2019</ion-footer>
+</ion-menu>
+<div *ngIf="showSplash" class="splash">
+  <div class="spinner"></div>
+</div>
+
+<ion-nav [root]="rootPage"  [class]="selectedTheme" #nav></ion-nav>

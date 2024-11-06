@@ -1,0 +1,21 @@
+<ion-header>
+  <ion-navbar>
+  	<ion-buttons left>
+      <button ion-button menuToggle>
+        <ion-icon name="menu"></ion-icon>
+      </button>
+    </ion-buttons>
+    <ion-title>Generate Q.R. Code</ion-title>
+  </ion-navbar>
+</ion-header>
+
+<ion-content>
+  <ion-card id="qrcodearea" *ngIf="createdCode">
+  <ngx-qrcode class="qrcodeimage" [qrc-value]="createdCode"></ngx-qrcode>
+    <ion-card-content class="qrvaluetext">
+      <p><b>{{ createdCode }}</b></p><br>
+      <p>This is the Q.R. Code that contains all of your personal details necessary in case anything happens to you.</p><br>
+      <p>Please screenshot and print for your own sake.</p>
+    </ion-card-content>
+  </ion-card>
+</ion-content>

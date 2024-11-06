@@ -1,0 +1,36 @@
+<ion-header>
+  <ion-navbar>
+  	<ion-buttons left>
+  		<button ion-button menuToggle>
+  			<ion-icon name="menu"></ion-icon>
+  		</button>
+  	</ion-buttons>
+  	<ion-buttons right>
+  		<button ion-button hidden="true">
+  			<ion-icon name="menu"></ion-icon>
+  		</button>
+  	</ion-buttons>
+    <ion-title>Login</ion-title>
+  </ion-navbar>
+</ion-header>
+
+<ion-content id="authpages" padding>
+	<div class="formloginin">
+	  		<img alt="logo" class="formlogo" src="../../assets/imgs/logo1.png">
+		 	 <form #f="ngForm" (ngSubmit)="onLogin(f)"> 
+				<ion-list>
+
+					<ion-item id="inputbox" text-wrap>
+						<ion-input type="email" name="email" placeholder="Email: Must be personal email address." [email]="true" required ngModel></ion-input>
+					</ion-item>
+
+					<ion-item id="inputbox" text-wrap>
+						<ion-input type="password" name="password" placeholder="Password: Input must be less than 8 & alphanumeric characters." pattern="^(?=.*[a-z])(?=.*[A-Z])(?=.*[0-9])[a-zA-Z0-9]+$" required [minlength]="8" [maxlength]="15" ngModel ></ion-input>
+					</ion-item>
+
+				</ion-list>
+				<button ion-button class="formbutton" type="submit" block [disabled]="!f.valid">Login</button>
+			</form> 
+				<button ion-button class="formbutton1" block (click)="onLoadRegister()">Create New Account</button>
+	</div>
+</ion-content>

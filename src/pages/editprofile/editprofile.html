@@ -1,0 +1,94 @@
+<ion-header>
+  <ion-navbar>
+    <ion-title>Edit Profile</ion-title>
+  </ion-navbar>
+</ion-header>
+
+<ion-content>
+<ion-card id="formhome">
+  	<ion-card-content id="formin" text-wrap>
+ 	 	<form [formGroup]="editProfileForm" (ngSubmit)="onSubmit()">
+		<ion-list>
+			<ion-item>
+				<ion-label floating><ion-icon name="person" id="blackiconsprofile"></ion-icon>Name: Input must be not less than 100 characters and alphabetic.</ion-label>
+				<ion-input type="text" placeholder="Name" ngModel="{{ profiles.name }}" formControlName="name"></ion-input>
+			</ion-item >
+
+			<ion-item>
+				<ion-label floating><ion-icon name="image" id="blackiconsprofile"></ion-icon>Photo URL: Must be Passport Photo. Upload the image at <a href="https://imgbb.com/">imgBB</a> and copy the URL given.</ion-label>
+				<ion-input type="text" placeholder="Photo URL" ngModel="{{ profiles.photo_urls }}" formControlName="photo_urls"></ion-input>
+			</ion-item >
+			<ion-item>
+				<ion-label floating><ion-icon name="card" id="blackiconsprofile"></ion-icon>IC Number: Input must be 8 characters and numeric. Eg: 010xxxxx)</ion-label>
+				<ion-input type="text" placeholder="IC Number" ngModel="{{ profiles.icnumber }}" formControlName="icnumber"></ion-input>
+			</ion-item>
+			<ion-item>
+				<ion-label floating><ion-icon name="male" id="blackiconsprofile"></ion-icon>Gender: Please fill in the input.</ion-label>
+				<ion-select formControlName="gender">
+					<ion-option *ngFor="let gender of gendertype" (value)="gender">
+						{{ gender }}
+					</ion-option>
+				</ion-select>
+			</ion-item>
+			<ion-item>
+				<ion-label floating><ion-icon name="calendar" id="blackiconsprofile"></ion-icon>Date of Birth: Please fill in the date input.</ion-label>
+				<ion-input type="date" placeholder="Date of Birth" ngModel="{{ profiles.dateofbirth }}" formControlName="dateofbirth"></ion-input>
+			</ion-item>
+			<ion-item>
+				<ion-label floating><ion-icon name="document" id="blackiconsprofile"></ion-icon>Bruhims Card Number: Input must be 15 characters and numeric.</ion-label>
+				<ion-input type="text" placeholder="Bruhims Card Number" ngModel="{{ profiles.bruhims_no }}" formControlName="bruhims_no"></ion-input>
+			</ion-item>
+			<ion-item>
+				<ion-label floating><ion-icon name="water" id="blackiconsprofile"></ion-icon>Blood Group: Please fill in the input.</ion-label>
+				<ion-select formControlName="bloodgroup">
+					<ion-option *ngFor="let blood of bloodgroup" (value)="blood">
+						{{ blood }}
+					</ion-option>
+				</ion-select>
+			</ion-item>
+			<ion-item>
+				<ion-label floating><ion-icon name="people" id="blackiconsprofile"></ion-icon>Martial Status: Please fill in the input.</ion-label>
+				<ion-select formControlName="marriage_status">
+					<ion-option *ngFor="let marriage_status of martial" (value)="marriage_status">
+						{{ marriage_status }}
+					</ion-option>
+				</ion-select>
+			</ion-item>
+			<ion-item>
+				<ion-label floating><ion-icon name="flag" id="blackiconsprofile"></ion-icon>Nationality: Please fill in the input.</ion-label>
+				<ion-input type="text" placeholder="Nationality" ngModel="{{ profiles.nationality }}" formControlName="nationality"></ion-input>
+			</ion-item>
+			<ion-item>
+				<ion-label floating><ion-icon name="analytics" id="blackiconsprofile"></ion-icon>Race: Please fill in the input.</ion-label>
+				<ion-select formControlName="race">
+					<ion-option *ngFor="let race of racetype" (value)="race">
+						{{ race }}
+					</ion-option>
+				</ion-select>
+			</ion-item>
+			<ion-item>
+				<ion-label floating><ion-icon name="briefcase" id="blackiconsprofile"></ion-icon>Occupation: Please fill in the input.</ion-label>
+				<ion-input type="text" placeholder="Occupation" ngModel="{{ profiles.occupation }}" formControlName="occupation"></ion-input>
+			</ion-item>
+			<ion-item>
+				<ion-label floating><ion-icon name="phone-portrait" id="blackiconsprofile"></ion-icon>Phone: Input must be 7 characters and numeric.</ion-label>
+				<ion-input type="number" placeholder="Phone" ngModel="{{ profiles.phone }}" formControlName="phone"></ion-input>
+			</ion-item>
+			<ion-item>
+				<ion-label floating><ion-icon name="mail" id="blackiconsprofile"></ion-icon>Email: Input is not possible to change.</ion-label>
+				<ion-input type="text" placeholder="Email" ngModel="{{ profiles.email }}" formControlName="email" disabled></ion-input>
+			</ion-item>
+			<ion-item>
+				<ion-label floating><ion-icon name="lock" id="blackiconsprofile"></ion-icon>Password: Input must be at least less than 8 characters and alphanumeric.</ion-label>
+				<ion-input type="password" placeholder="Password" ngModel="{{ profiles.password }}" formControlName="password"></ion-input>
+			</ion-item>
+			<ion-item>
+				<ion-label floating><ion-icon name="home" id="blackiconsprofile"></ion-icon>Address: Input must be less than 100 characters and alphabetic.</ion-label>
+				<ion-textarea placeholder="Address" ngModel="{{ profiles.address }}" formControlName="address"></ion-textarea>
+			</ion-item>
+		</ion-list>
+		<button ion-button block id="btnmode1" color="accept" type="submit" [disabled]="!editProfileForm.valid">Update</button>
+	</form>
+	</ion-card-content>
+  </ion-card>
+</ion-content>
